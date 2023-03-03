@@ -8,11 +8,32 @@ double Prompt(string msg)
     return Convert.ToDouble(Console.ReadLine());;
 }
 
-double b1 = Prompt("Введите b1: ");
-double k1 = Prompt("Введите k1: ");
-double b2 = Prompt("Введите b2: ");
-double k2 = Prompt("Введите k2: ");
+double k1 = Prompt("Введите коэффицент первой прямой: ");
+double b1 = Prompt("Введите константу первой прямой: ");
+double k2 = Prompt("Введите коэфффицент второй прямой: ");
+double b2 = Prompt("Введите константу второй прямой: ");
 
-double x = (b2 - b1)/(k1-k2);
-double y = k1*(b2 - b1)/(k1-k2) + b1;
-Console.WriteLine($"Прямые пересекаются на координатах: ({x}; {y})");
+bool CheckLines(double k1, double b1, double k2, double b2)
+{
+    if (k2 - k1 == 0)
+    {
+        if (b2 - b1 == 0)
+        {
+            Console.WriteLine("Прямые совпадают");
+            return false;
+        }
+        else
+        {
+            Console.WriteLine("Прямые параллельны");
+            return false;
+        }
+    }
+    return true;
+
+}
+if (CheckLines(k1, b1, k2, b2))
+{
+    double x = (b2 - b1)/(k1 - k2);
+    double y = k1*(b2 - b1)/(k1 - k2) + b1;
+    Console.WriteLine($"Прямые пересекаются на координатах: ({Math.Round(x, 2)}; {Math.Round(y, 2)})");
+}
